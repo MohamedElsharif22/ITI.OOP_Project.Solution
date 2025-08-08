@@ -43,6 +43,7 @@ namespace ITI.OOP_Project
             Console.WriteLine("Book added successfully");   
         }
 
+        //********************************** Remove Book Function ***********************************
 
         public void RemoveBook(int id)
         {
