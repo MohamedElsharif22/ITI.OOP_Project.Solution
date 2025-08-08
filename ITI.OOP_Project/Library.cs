@@ -22,7 +22,6 @@ namespace ITI.OOP_Project
             Books = books ?? new List<Book>();
             Members = members ?? new List<Member>();
         }
-<<<<<<< HEAD
 
 
         //********************************** Add Book Function ***********************************
@@ -113,7 +112,7 @@ namespace ITI.OOP_Project
         Console.WriteLine($"{member.Name} returned '{book.Title}'");
         }
 
-=======
+        // Ghazaly's code for adding and removing members
         public void AddMember(Member member)
         { 
             if(member!=null)
@@ -151,6 +150,5 @@ namespace ITI.OOP_Project
             }
           
         }
->>>>>>> Ghazaly
     }
 }
