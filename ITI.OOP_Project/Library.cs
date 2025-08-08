@@ -22,10 +22,34 @@ namespace ITI.OOP_Project
             Books = books ?? new List<Book>();
             Members = members ?? new List<Member>();
         }
+        //********************************** Show Available Books Function ***********************************
+        public void ShowAvailableBooks()
+        {
+            Console.WriteLine("Available Books:");
+            foreach (var book in Books)
+            {
+                if (book.IsAvailable)
+                {
+                    Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author}");
+                }
+            }
+        }
+        //********************************** Show Borrowed Books Function ***********************************
+        public void ShowBorrowedBooks()
+        {
+            Console.WriteLine("Borrowed Books:");
+            foreach (var book in Books)
+            {
+                if (!book.IsAvailable)
+                {
+                    Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author}");
+                }
+            }
+        }
 
 
         //********************************** Add Book Function ***********************************
-        
+
         private List<Book> books = new List<Book>();
 
      
