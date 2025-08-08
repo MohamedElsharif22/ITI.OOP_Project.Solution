@@ -33,7 +33,7 @@ namespace ITI.OOP_Project
         {
             foreach(Book book in books)
             {
-                if(book.Id == id && book.Title.Equals(title,StringComparison.OrdinalIgnoreCase) && book.Author.Equals(author, StringComparison.OrdinalIgnoreCase))
+                if(book.Id == id || book.Title.Equals(title,StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("This book is already exist");
                     return;
@@ -51,6 +51,7 @@ namespace ITI.OOP_Project
                 if(book.Id == id)
                 {
                     books.Remove (book);
+                    Console.WriteLine("Book removed successfully");
                     return;
                 }
             }
