@@ -28,17 +28,34 @@ namespace ITI.OOP_Project
         
         private List<Book> books = new List<Book>();
 
+     
         public void AddBook(int id, string title, string author)
         {
             foreach(Book book in books)
             {
-                if(book.Id == id && book.Title == title && book.Author == author)
+                if(book.Id == id && book.Title.Equals(title,StringComparison.OrdinalIgnoreCase) && book.Author.Equals(author, StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("This book is already exist");
+                    return;
                 }
             }
             books.Add(new Book(id, title, author));
             Console.WriteLine("Book added successfully");   
+        }
+
+
+        public void RemoveBook(int id)
+        {
+            foreach(Book book in books)
+            {
+                if(book.Id == id)
+                {
+                    books.Remove (book);
+                    return;
+                }
+            }
+            Console.WriteLine("This book is not exist");
+
         }
 
 
