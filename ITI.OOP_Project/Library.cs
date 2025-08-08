@@ -21,5 +21,55 @@ namespace ITI.OOP_Project
             Books = books ?? new List<Book>();
             Members = members ?? new List<Member>();
         }
+        public void BorrowBook(int bookId, int memberId)
+        {
+        var book = Books.FirstOrDefault(b => b.Id == bookId);
+        var member = Members.FirstOrDefault(m => m.Id == memberId);
+        if (book == null)
+        {
+            Console.WriteLine("Book not found.");
+            return;
+        }
+        if (member == null)
+        {
+            Console.WriteLine("Member not found.");
+            return;
+        }
+        if (!book.IsAvailable)
+        {
+            Console.WriteLine("Book is not available for borrowing.");
+            return;
+        }
+        book.IsAvailable = false;
+        member.BorrowedBooks.Add(book);
+        //Alice Smith borrowed 'The Great Gatsby'
+        Console.WriteLine($"{member.Name} borrowed '{book.Title}'");
+        }
+        
+        public void ReturnBook(int bookId, int memberId)
+        {
+        var book = Books.FirstOrDefault(b => b.Id == bookId);
+        var member = Members.FirstOrDefault(m => m.Id == memberId);
+        if (book == null)
+        {
+            Console.WriteLine("Book not found.");
+            return;
+        }
+        if (member == null)
+        {
+            Console.WriteLine("Member not found.");
+            return;
+        }
+        if (book.IsAvailable || !member.BorrowedBooks.Contains(book))
+        {
+            Console.WriteLine("This book was not borrowed by this member.");
+            return;
+        }
+        book.IsAvailable = true;
+        member.BorrowedBooks.Remove(book);
+        //Alice Smith returned 'The Great Gatsby'
+        Console.WriteLine($"{member.Name} returned '{book.Title}'");
+        }
+
     }
 }
