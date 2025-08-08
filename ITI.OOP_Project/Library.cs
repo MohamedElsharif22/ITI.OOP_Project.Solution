@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace ITI.OOP_Project
 {
@@ -21,6 +22,27 @@ namespace ITI.OOP_Project
             Books = books ?? new List<Book>();
             Members = members ?? new List<Member>();
         }
+
+
+        //********************************** Add Book Function ***********************************
+        
+        private List<Book> books = new List<Book>();
+
+        public void AddBook(int id, string title, string author)
+        {
+            foreach(Book book in books)
+            {
+                if(book.Id == id && book.Title == title && book.Author == author)
+                {
+                    Console.WriteLine("This book is already exist");
+                }
+            }
+            books.Add(new Book(id, title, author));
+            Console.WriteLine("Book added successfully");   
+        }
+
+
+
         public void BorrowBook(int bookId, int memberId)
         {
         var book = Books.FirstOrDefault(b => b.Id == bookId);
