@@ -18,6 +18,7 @@ namespace ITI.OOP_Project
             Id = id;
             Title = title;
             Author = author;
+            IsAvailable = true; // Default to available when a book is created
         }
     }
 }

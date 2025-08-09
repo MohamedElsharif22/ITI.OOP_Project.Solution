@@ -17,5 +17,22 @@ namespace ITI.OOP_Project
             Name = name;
             BorrowedBooks = new List<Book>();
         }
+
+        public void DisplayBorrowedBooks()
+        {
+            Console.WriteLine($"Borrowed Books by {Name}:");
+            if (BorrowedBooks.Count == 0)
+            {
+                Console.WriteLine("No books borrowed.");
+            }
+            else
+            {
+                Console.WriteLine($"{Name}'s List of borrowed books:");
+                foreach (var book in BorrowedBooks)
+                {
+                    Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author}");
+                }
+            }
+        }
     }
 }
