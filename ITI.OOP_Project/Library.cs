@@ -34,29 +34,24 @@ namespace ITI.OOP_Project
                     }
                 }
                 Members.Add(member);
-
             }
             else
             {
-                Members.Add(member);
+                Console.WriteLine("can't add null");
+
             }
         }
         public void removeMember(int memberId)
         {
-            int v = 0;
             foreach (Member m in Members)
             {
                 if (m.Id == memberId)
                 {
                     Members.Remove(m);
-                    v=1; break;
+                    return;
                 }
-            }
-            if(v == 0)
-            {
+            }  
                 Console.WriteLine("member is Already not found");
-            }
-          
         }
     }
 }
