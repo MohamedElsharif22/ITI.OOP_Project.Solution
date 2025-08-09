@@ -34,6 +34,7 @@ namespace ITI.OOP_Project
                     }
                 }
                 Members.Add(member);
+                Console.WriteLine("Member added successfully");
             }
             else
             {
@@ -48,6 +49,7 @@ namespace ITI.OOP_Project
                 if (m.Id == memberId)
                 {
                     Members.Remove(m);
+                    Console.WriteLine("Member removed successfuly");
                     return;
                 }
             }  
