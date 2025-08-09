@@ -50,12 +50,11 @@ namespace ITI.OOP_Project
 
         //********************************** Add Book Function ***********************************
 
-        private List<Book> books = new List<Book>();
 
      
         public void AddBook(int id, string title, string author)
         {
-            foreach(Book book in books)
+            foreach(Book book in Books)
             {
                 if(book.Id == id || book.Title.Equals(title,StringComparison.OrdinalIgnoreCase))
                 {
@@ -63,7 +62,7 @@ namespace ITI.OOP_Project
                     return;
                 }
             }
-            books.Add(new Book(id, title, author));
+            Books.Add(new Book(id, title, author));
             Console.WriteLine("Book added successfully");   
         }
 
@@ -71,11 +70,11 @@ namespace ITI.OOP_Project
 
         public void RemoveBook(int id)
         {
-            foreach(Book book in books)
+            foreach(Book book in Books)
             {
                 if(book.Id == id)
                 {
-                    books.Remove (book);
+                    Books.Remove (book);
                     Console.WriteLine("Book removed successfully");
                     return;
                 }
