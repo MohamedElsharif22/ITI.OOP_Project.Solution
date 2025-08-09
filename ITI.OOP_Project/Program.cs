@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.Design.Serialization;
 
 namespace ITI.OOP_Project
 {
@@ -9,34 +8,34 @@ namespace ITI.OOP_Project
         {
             Library library = new Library();
 
-       
+      
             library.Books.AddRange(new List<Book>
             {
-                new Book(1, "The Great Gatsby", "F. Scott Fitzgerald") { IsAvailable = true },
-                new Book(2, "1984", "George Orwell") { IsAvailable = true },
-                new Book(3, "To Kill a Mockingbird", "Harper Lee") { IsAvailable = true },
-                new Book(4, "Pride and Prejudice", "Jane Austen") { IsAvailable = true },
-                new Book(5, "The Catcher in the Rye", "J.D. Salinger") { IsAvailable = true },
-                new Book(6, "Moby-Dick", "Herman Melville") { IsAvailable = true },
-                new Book(7, "War and Peace", "Leo Tolstoy") { IsAvailable = true },
-                new Book(8, "The Odyssey", "Homer") { IsAvailable = true },
-                new Book(9, "Crime and Punishment", "Fyodor Dostoevsky") { IsAvailable = true },
-                new Book(10, "The Hobbit", "J.R.R. Tolkien") { IsAvailable = true }
+                new Book(1, "OOP", "Ahmed Refaat") { IsAvailable = true },
+                new Book(2, "c#", "Mohamed Kamal") { IsAvailable = true },
+                new Book(3, "Sql", "Walid Ayman") { IsAvailable = true },
+                new Book(4, "Html", "Mohamed Ghazaly") { IsAvailable = true },
+                new Book(5, "css", "Mohamed Shaban") { IsAvailable = true },
+                new Book(6, "javaScript", "Refaat") { IsAvailable = true },
+                new Book(7, "BootStrip", "Kamal") { IsAvailable = true },
+                new Book(8, "React", "Ghazaly") { IsAvailable = true },
+                new Book(9, "Angler", "Ayman") { IsAvailable = true },
+                new Book(10, "Github", "J.R.R. Tolkien") { IsAvailable = true }
             });
 
-          
+
             library.Members.AddRange(new List<Member>
             {
-                new Member(1, "Alice Smith"),
-                new Member(2, "Bob Johnson"),
-                new Member(3, "Charlie Brown"),
-                new Member(4, "Diana Prince"),
-                new Member(5, "Ethan Hunt"),
-                new Member(6, "Fiona Gallagher"),
-                new Member(7, "George Martin"),
-                new Member(8, "Hannah Williams"),
-                new Member(9, "Ian McKellen"),
-                new Member(10, "Julia Roberts")
+                new Member(1, "Ahmed refaat"),
+                new Member(2, "Mohamed Kamal"),
+                new Member(3, "Walid Ayman"),
+                new Member(4, "Mohamed Ghazaly"),
+                new Member(5, "Mohamed Shaban"),
+                new Member(6, "Refaat"),
+                new Member(7, "Kamal"),
+                new Member(8, "Ayman"),
+                new Member(9, "Ghazaly"),
+                new Member(10, "Shaban")
             });
 
             bool keepRunning = true;
@@ -53,11 +52,12 @@ namespace ITI.OOP_Project
                 Console.WriteLine("7. Show Available Books");
                 Console.WriteLine("8. Show Borrowed Books");
                 Console.WriteLine("9. Exit");
+                Console.Write("Choose an option (1-9): ");
 
                 int choice;
                 while (!int.TryParse(Console.ReadLine(), out choice))
                 {
-                    Console.Write(" Invalid input! Please enter a valid number: ");
+                    Console.Write("Invalid input! Please enter a valid number: ");
                 }
 
                 switch (choice)
@@ -67,12 +67,22 @@ namespace ITI.OOP_Project
                         int bookId;
                         while (!int.TryParse(Console.ReadLine(), out bookId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         Console.Write("Enter Title: ");
                         string title = Console.ReadLine();
+                        while (string.IsNullOrWhiteSpace(title))
+                        {
+                            Console.Write("Invalid Title => Please enter a valid title: ");
+                            title = Console.ReadLine();
+                        }
                         Console.Write("Enter Author: ");
                         string author = Console.ReadLine();
+                        while (string.IsNullOrWhiteSpace(author))
+                        {
+                            Console.Write("Invalid Author => Please enter a valid author: ");
+                            author = Console.ReadLine();
+                        }
                         library.AddBook(bookId, title, author);
                         break;
 
@@ -81,7 +91,7 @@ namespace ITI.OOP_Project
                         int removeBookId;
                         while (!int.TryParse(Console.ReadLine(), out removeBookId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         library.RemoveBook(removeBookId);
                         break;
@@ -91,10 +101,15 @@ namespace ITI.OOP_Project
                         int memberId;
                         while (!int.TryParse(Console.ReadLine(), out memberId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         Console.Write("Enter Member Name: ");
                         string name = Console.ReadLine();
+                        while (string.IsNullOrWhiteSpace(name))
+                        {
+                            Console.Write("Invalid Name => Please enter a valid name: ");
+                            name = Console.ReadLine();
+                        }
                         library.AddMember(new Member(memberId, name));
                         break;
 
@@ -103,7 +118,7 @@ namespace ITI.OOP_Project
                         int removeMemberId;
                         while (!int.TryParse(Console.ReadLine(), out removeMemberId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         library.removeMember(removeMemberId);
                         break;
@@ -113,13 +128,13 @@ namespace ITI.OOP_Project
                         int borrowBookId;
                         while (!int.TryParse(Console.ReadLine(), out borrowBookId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         Console.Write("Enter Member ID: ");
                         int borrowMemberId;
                         while (!int.TryParse(Console.ReadLine(), out borrowMemberId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         library.BorrowBook(borrowBookId, borrowMemberId);
                         break;
@@ -129,13 +144,13 @@ namespace ITI.OOP_Project
                         int returnBookId;
                         while (!int.TryParse(Console.ReadLine(), out returnBookId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         Console.Write("Enter Member ID: ");
                         int returnMemberId;
                         while (!int.TryParse(Console.ReadLine(), out returnMemberId))
                         {
-                            Console.Write("Invalid ID! Please enter a number: ");
+                            Console.Write("Invalid ID => Please enter a number: ");
                         }
                         library.ReturnBook(returnBookId, returnMemberId);
                         break;
@@ -160,9 +175,9 @@ namespace ITI.OOP_Project
 
                 if (keepRunning)
                 {
-                    Console.Write("\nDo you want to continue? (y/n): ");
-                    string cont = Console.ReadLine().ToLower();
-                    if (cont != "y")
+                    Console.Write("\nDo you want to continue? (y): ");
+                    string count = Console.ReadLine()?.ToLower();
+                    if (count != "y")
                     {
                         keepRunning = false;
                         Console.WriteLine("Exiting the program...");
@@ -170,7 +185,7 @@ namespace ITI.OOP_Project
                 }
 
             } while (keepRunning);
+
         }
     }
 }
-
