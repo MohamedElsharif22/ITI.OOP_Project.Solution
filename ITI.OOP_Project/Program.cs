@@ -120,7 +120,7 @@ namespace ITI.OOP_Project
                         {
                             Console.Write("Invalid ID => Please enter a number: ");
                         }
-                        library.removeMember(removeMemberId);
+                        library.RemoveMember(removeMemberId);
                         break;
 
                     case 5:

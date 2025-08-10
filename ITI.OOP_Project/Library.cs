@@ -157,12 +157,19 @@ namespace ITI.OOP_Project
 
             }
         }
-        public void removeMember(int memberId)
+        public void RemoveMember(int memberId)
         {
             foreach (Member m in Members)
             {
                 if (m.Id == memberId)
                 {
+                    if (m.BorrowedBooks.Count > 0)
+                    {
+                        Console.WriteLine("Member cannot be removed because they have borrowed books.");
+                        Console.WriteLine("Please return the borrowed books before removing the member.");
+                        m.DisplayBorrowedBooks();
+                        return;
+                    }
                     Members.Remove(m);
                     Console.WriteLine("Member removed successfuly");
                     return;
