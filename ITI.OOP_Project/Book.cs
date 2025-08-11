@@ -20,5 +20,10 @@ namespace ITI.OOP_Project
             Author = author;
             IsAvailable = true; // Default to available when a book is created
         }
+
+        public override string ToString()
+        {
+            return $"ID: {Id}, Title: {Title}, Author: {Author}, Available: {IsAvailable}";
+        }
     }
 }

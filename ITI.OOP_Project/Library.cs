@@ -25,35 +25,50 @@ namespace ITI.OOP_Project
         //********************************** Show Available Books Function ***********************************
         public void ShowAvailableBooks()
         {
-            int count = 0;
+            bool isEmpty = true;
             Console.WriteLine("Available Books:");
             foreach (var book in Books)
             {
                 if (book.IsAvailable)
                 {
-                    count++;
-                    Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author}");
+                    isEmpty = false;
+                    Console.WriteLine(book);
                 }
             }
-            if (count == 0)
+            if (isEmpty)
                 Console.WriteLine("No available books.");
             
         }
         //********************************** Show Borrowed Books Function ***********************************
         public void ShowBorrowedBooks()
         {
-            int count = 0;
+            bool isEmpty = true;
             Console.WriteLine("Borrowed Books:");
             foreach (var book in Books)
             {
                 if (!book.IsAvailable)
                 {
-                    count++;
-                    Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author}");
+                    isEmpty = false;
+                    Console.WriteLine(book);
                 }
             }
-            if (count == 0)
+            if (isEmpty)
                 Console.WriteLine("No borrowed books.");
+        }
+
+        //*********************************** Show Members Function ***********************************
+        public void ShowMembers()
+        {
+            if (Members.Count == 0)
+            {
+                Console.WriteLine("No members in the library.");
+                return;
+            }
+            Console.WriteLine("Members:");
+            foreach (var member in Members)
+            {
+                Console.WriteLine(member);
+            }
         }
 
 
