@@ -74,9 +74,17 @@ namespace ITI.OOP_Project
             {
                 if(book.Id == id)
                 {
-                    Books.Remove (book);
-                    Console.WriteLine("Book removed successfully");
-                    return;
+                    if(book.IsAvailable == false)
+                    {
+                        Books.Remove(book);
+                        Console.WriteLine("Book removed successfully");
+                        return ;
+                    }
+                    else if (book.IsAvailable == true)
+                    {
+                        Console.WriteLine("You can not remove this book becouse it is borrowed by a member");
+                        return ;
+                    }
                 }
             }
             Console.WriteLine("This book is not exist");
