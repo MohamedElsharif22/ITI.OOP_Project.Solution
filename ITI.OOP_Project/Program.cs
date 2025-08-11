@@ -51,8 +51,9 @@ namespace ITI.OOP_Project
                 Console.WriteLine("6. Return Book");
                 Console.WriteLine("7. Show Available Books");
                 Console.WriteLine("8. Show Borrowed Books");
-                Console.WriteLine("9. Exit");
-                Console.Write("Choose an option (1-9): ");
+                Console.WriteLine("9. Show Members");
+                Console.WriteLine("0. Exit");
+                Console.Write("Choose an option (0-9): ");
 
                 int choice;
                 while (!int.TryParse(Console.ReadLine(), out choice))
@@ -164,6 +165,10 @@ namespace ITI.OOP_Project
                         break;
 
                     case 9:
+                        library.ShowMembers();
+                        break;
+
+                    case 0:
                         Console.WriteLine("Goodbye!");
                         keepRunning = false;
                         break;

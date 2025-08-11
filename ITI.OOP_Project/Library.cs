@@ -56,6 +56,21 @@ namespace ITI.OOP_Project
                 Console.WriteLine("No borrowed books.");
         }
 
+        //*********************************** Show Members Function ***********************************
+        public void ShowMembers()
+        {
+            if (Members.Count == 0)
+            {
+                Console.WriteLine("No members in the library.");
+                return;
+            }
+            Console.WriteLine("Members:");
+            foreach (var member in Members)
+            {
+                Console.WriteLine(member);
+            }
+        }
+
 
         //********************************** Add Book Function ***********************************
 
