@@ -72,13 +72,13 @@ namespace ITI.OOP_Project
             {
                 if(book.Id == id)
                 {
-                    if(book.IsAvailable == true)
+                    if(book.IsAvailable)
                     {
                         Books.Remove(book);
                         Console.WriteLine("Book removed successfully");
                         return ;
                     }
-                    else if (book.IsAvailable == false)
+                    else if (!book.IsAvailable)
                     {
                         Console.WriteLine("You can not remove this book because it is borrowed ");
                         return ;
