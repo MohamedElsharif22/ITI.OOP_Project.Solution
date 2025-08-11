@@ -50,8 +50,6 @@ namespace ITI.OOP_Project
 
         //********************************** Add Book Function ***********************************
 
-
-     
         public void AddBook(int id, string title, string author)
         {
             foreach(Book book in Books)
@@ -74,15 +72,15 @@ namespace ITI.OOP_Project
             {
                 if(book.Id == id)
                 {
-                    if(book.IsAvailable == false)
+                    if(book.IsAvailable == true)
                     {
                         Books.Remove(book);
                         Console.WriteLine("Book removed successfully");
                         return ;
                     }
-                    else if (book.IsAvailable == true)
+                    else if (book.IsAvailable == false)
                     {
-                        Console.WriteLine("You can not remove this book becouse it is borrowed by a member");
+                        Console.WriteLine("You can not remove this book because it is borrowed by a member");
                         return ;
                     }
                 }
