@@ -91,7 +91,7 @@ namespace ITI.OOP_Project
 
         }
 
-
+        //********************************** Borrow Book Function ***********************************
 
         public void BorrowBook(int bookId, int memberId)
         {
@@ -117,7 +117,9 @@ namespace ITI.OOP_Project
         //Alice Smith borrowed 'The Great Gatsby'
         Console.WriteLine($"{member.Name} borrowed '{book.Title}'");
         }
-        
+
+        //********************************** Return Book Function ***********************************
+
         public void ReturnBook(int bookId, int memberId)
         {
         var book = Books.FirstOrDefault(b => b.Id == bookId);
