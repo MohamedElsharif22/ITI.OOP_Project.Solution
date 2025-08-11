@@ -25,26 +25,35 @@ namespace ITI.OOP_Project
         //********************************** Show Available Books Function ***********************************
         public void ShowAvailableBooks()
         {
+            int count = 0;
             Console.WriteLine("Available Books:");
             foreach (var book in Books)
             {
                 if (book.IsAvailable)
                 {
+                    count++;
                     Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author}");
                 }
             }
+            if (count == 0)
+                Console.WriteLine("No available books.");
+            
         }
         //********************************** Show Borrowed Books Function ***********************************
         public void ShowBorrowedBooks()
         {
+            int count = 0;
             Console.WriteLine("Borrowed Books:");
             foreach (var book in Books)
             {
                 if (!book.IsAvailable)
                 {
+                    count++;
                     Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author}");
                 }
             }
+            if (count == 0)
+                Console.WriteLine("No borrowed books.");
         }
 
 
@@ -93,54 +102,52 @@ namespace ITI.OOP_Project
 
         public void BorrowBook(int bookId, int memberId)
         {
-        var book = Books.FirstOrDefault(b => b.Id == bookId);
-        var member = Members.FirstOrDefault(m => m.Id == memberId);
-        if (book == null)
-        {
-            Console.WriteLine("Book not found.");
-            return;
-        }
-        if (member == null)
-        {
-            Console.WriteLine("Member not found.");
-            return;
-        }
-        if (!book.IsAvailable)
-        {
-            Console.WriteLine("Book is not available for borrowing.");
-            return;
-        }
-        book.IsAvailable = false;
-        member.BorrowedBooks.Add(book);
-        //Alice Smith borrowed 'The Great Gatsby'
-        Console.WriteLine($"{member.Name} borrowed '{book.Title}'");
+            var book = Books.FirstOrDefault(b => b.Id == bookId);
+            var member = Members.FirstOrDefault(m => m.Id == memberId);
+            if (book == null)
+            {
+                Console.WriteLine("Book not found.");
+                return;
+            }
+            if (member == null)
+            {
+                Console.WriteLine("Member not found.");
+                return;
+            }
+            if (!book.IsAvailable)
+            {
+                Console.WriteLine("Book is not available for borrowing.");
+                return;
+            }
+            book.IsAvailable = false;
+            member.BorrowedBooks.Add(book);
+            Console.WriteLine($"{member.Name} borrowed '{book.Title}'");
         }
 
         //********************************** Return Book Function ***********************************
 
         public void ReturnBook(int bookId, int memberId)
         {
-        var book = Books.FirstOrDefault(b => b.Id == bookId);
-        var member = Members.FirstOrDefault(m => m.Id == memberId);
-        if (book == null)
-        {
-            Console.WriteLine("Book not found.");
-            return;
-        }
-        if (member == null)
-        {
-            Console.WriteLine("Member not found.");
-            return;
-        }
-        if (book.IsAvailable || !member.BorrowedBooks.Contains(book))
-        {
-            Console.WriteLine("This book was not borrowed by this member.");
-            return;
-        }
-        book.IsAvailable = true;
-        member.BorrowedBooks.Remove(book);
-        //Alice Smith returned 'The Great Gatsby'
-        Console.WriteLine($"{member.Name} returned '{book.Title}'");
+            var book = Books.FirstOrDefault(b => b.Id == bookId);
+            var member = Members.FirstOrDefault(m => m.Id == memberId);
+            if (book == null)
+            {
+                Console.WriteLine("Book not found.");
+                return;
+            }
+            if (member == null)
+            {
+                Console.WriteLine("Member not found.");
+                return;
+            }
+            if (book.IsAvailable || !member.BorrowedBooks.Contains(book))
+            {
+                Console.WriteLine("This book was not borrowed by this member.");
+                return;
+            }
+            book.IsAvailable = true;
+            member.BorrowedBooks.Remove(book);
+            Console.WriteLine($"{member.Name} returned '{book.Title}'");
         }
 
         // Ghazaly's code for adding and removing members
@@ -162,7 +169,6 @@ namespace ITI.OOP_Project
             else
             {
                 Console.WriteLine("can't add null");
-
             }
         }
         public void RemoveMember(int memberId)
@@ -183,7 +189,7 @@ namespace ITI.OOP_Project
                     return;
                 }
             }  
-                Console.WriteLine("member is Already not found");
+            Console.WriteLine("member is not found");
         }
     }
 }

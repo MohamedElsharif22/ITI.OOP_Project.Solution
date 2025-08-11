@@ -11,16 +11,16 @@ namespace ITI.OOP_Project
       
             library.Books.AddRange(new List<Book>
             {
-                new Book(1, "OOP", "Ahmed Refaat") { IsAvailable = true },
-                new Book(2, "c#", "Mohamed Kamal") { IsAvailable = true },
-                new Book(3, "Sql", "Walid Ayman") { IsAvailable = true },
-                new Book(4, "Html", "Mohamed Ghazaly") { IsAvailable = true },
-                new Book(5, "css", "Mohamed Shaban") { IsAvailable = true },
-                new Book(6, "javaScript", "Refaat") { IsAvailable = true },
-                new Book(7, "BootStrip", "Kamal") { IsAvailable = true },
-                new Book(8, "React", "Ghazaly") { IsAvailable = true },
-                new Book(9, "Angler", "Ayman") { IsAvailable = true },
-                new Book(10, "Github", "J.R.R. Tolkien") { IsAvailable = true }
+                new Book(1, "OOP", "Ahmed Refaat"),
+                new Book(2, "c#", "Mohamed Kamal"),
+                new Book(3, "Sql", "Walid Ayman"),
+                new Book(4, "Html", "Mohamed Ghazaly"),
+                new Book(5, "css", "Mohamed Shaban"),
+                new Book(6, "javaScript", "Refaat"),
+                new Book(7, "BootStrip", "Kamal"),
+                new Book(8, "React", "Ghazaly"),
+                new Book(9, "Angler", "Ayman"),
+                new Book(10, "Github", "J.R.R. Tolkien")
             });
 
 
@@ -176,8 +176,8 @@ namespace ITI.OOP_Project
                 if (keepRunning)
                 {
                     Console.Write("\nDo you want to continue? (y): ");
-                    string count = Console.ReadLine()?.ToLower();
-                    if (count != "y")
+                    string res = Console.ReadLine()?.ToLower();
+                    if (res != "y")
                     {
                         keepRunning = false;
                         Console.WriteLine("Exiting the program...");
