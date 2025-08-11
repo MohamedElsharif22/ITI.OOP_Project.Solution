@@ -80,7 +80,7 @@ namespace ITI.OOP_Project
                     }
                     else if (book.IsAvailable == false)
                     {
-                        Console.WriteLine("You can not remove this book because it is borrowed by a member");
+                        Console.WriteLine("You can not remove this book because it is borrowed ");
                         return ;
                     }
                 }
