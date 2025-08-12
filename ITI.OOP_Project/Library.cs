@@ -83,6 +83,12 @@ namespace ITI.OOP_Project
                     Console.WriteLine("This book is already exist");
                     return;
                 }
+                else if(id <= 0)
+                {
+                    Console.WriteLine("Invalid ID => Please enter a valid number");
+                    return;
+                }
+                
             }
             Books.Add(new Book(id, title, author));
             Console.WriteLine("Book added successfully");   

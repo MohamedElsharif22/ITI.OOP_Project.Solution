@@ -100,7 +100,7 @@ namespace ITI.OOP_Project
                     case 3:
                         Console.Write("Enter Member ID: ");
                         int memberId;
-                        while (!int.TryParse(Console.ReadLine(), out memberId))
+                        while (!int.TryParse(Console.ReadLine(), out memberId) || memberId <= 0)
                         {
                             Console.Write("Invalid ID => Please enter a number: ");
                         }
