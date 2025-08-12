@@ -8,7 +8,6 @@ namespace ITI.OOP_Project
         {
             Library library = new Library();
 
-      
             library.Books.AddRange(new List<Book>
             {
                 new Book(1, "OOP", "Ahmed Refaat"),
@@ -22,7 +21,6 @@ namespace ITI.OOP_Project
                 new Book(9, "Angler", "Ayman"),
                 new Book(10, "Github", "J.R.R. Tolkien")
             });
-
 
             library.Members.AddRange(new List<Member>
             {
@@ -42,28 +40,11 @@ namespace ITI.OOP_Project
 
             do
             {
-                Console.WriteLine("\n===== Library Management System =====");
-                Console.WriteLine("1. Add Book");
-                Console.WriteLine("2. Remove Book");
-                Console.WriteLine("3. Add Member");
-                Console.WriteLine("4. Remove Member");
-                Console.WriteLine("5. Borrow Book");
-                Console.WriteLine("6. Return Book");
-                Console.WriteLine("7. Show Available Books");
-                Console.WriteLine("8. Show Borrowed Books");
-                Console.WriteLine("9. Show Members");
-                Console.WriteLine("0. Exit");
-                Console.Write("Choose an option (0-9): ");
-
-                int choice;
-                while (!int.TryParse(Console.ReadLine(), out choice))
-                {
-                    Console.Write("Invalid input! Please enter a valid number: ");
-                }
+                int choice = ShowMenuAndGetChoice();
 
                 switch (choice)
                 {
-                    case 1:
+                    case 0:
                         Console.Write("Enter Book ID: ");
                         int bookId;
                         while (!int.TryParse(Console.ReadLine(), out bookId))
@@ -87,7 +68,7 @@ namespace ITI.OOP_Project
                         library.AddBook(bookId, title, author);
                         break;
 
-                    case 2:
+                    case 1:
                         Console.Write("Enter Book ID to remove: ");
                         int removeBookId;
                         while (!int.TryParse(Console.ReadLine(), out removeBookId))
@@ -97,7 +78,7 @@ namespace ITI.OOP_Project
                         library.RemoveBook(removeBookId);
                         break;
 
-                    case 3:
+                    case 2:
                         Console.Write("Enter Member ID: ");
                         int memberId;
                         while (!int.TryParse(Console.ReadLine(), out memberId) || memberId <= 0)
@@ -114,7 +95,7 @@ namespace ITI.OOP_Project
                         library.AddMember(new Member(memberId, name));
                         break;
 
-                    case 4:
+                    case 3:
                         Console.Write("Enter Member ID to remove: ");
                         int removeMemberId;
                         while (!int.TryParse(Console.ReadLine(), out removeMemberId))
@@ -124,7 +105,7 @@ namespace ITI.OOP_Project
                         library.RemoveMember(removeMemberId);
                         break;
 
-                    case 5:
+                    case 4:
                         Console.Write("Enter Book ID to borrow: ");
                         int borrowBookId;
                         while (!int.TryParse(Console.ReadLine(), out borrowBookId))
@@ -140,7 +121,7 @@ namespace ITI.OOP_Project
                         library.BorrowBook(borrowBookId, borrowMemberId);
                         break;
 
-                    case 6:
+                    case 5:
                         Console.Write("Enter Book ID to return: ");
                         int returnBookId;
                         while (!int.TryParse(Console.ReadLine(), out returnBookId))
@@ -156,41 +137,90 @@ namespace ITI.OOP_Project
                         library.ReturnBook(returnBookId, returnMemberId);
                         break;
 
-                    case 7:
+                    case 6:
                         library.ShowAvailableBooks();
                         break;
 
-                    case 8:
+                    case 7:
                         library.ShowBorrowedBooks();
                         break;
 
-                    case 9:
+                    case 8:
                         library.ShowMembers();
                         break;
 
-                    case 0:
+                    case 9:
                         Console.WriteLine("Goodbye!");
                         keepRunning = false;
-                        break;
-
-                    default:
-                        Console.WriteLine("Invalid option. Try again.");
                         break;
                 }
 
                 if (keepRunning)
                 {
-                    Console.Write("\nDo you want to continue? (y): ");
-                    string res = Console.ReadLine()?.ToLower();
-                    if (res != "y")
-                    {
-                        keepRunning = false;
-                        Console.WriteLine("Exiting the program...");
-                    }
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
 
             } while (keepRunning);
+        }
 
+        static int ShowMenuAndGetChoice()
+        {
+            string[] menuOptions = 
+            {
+                "Add Book",
+                "Remove Book",
+                "Add Member",
+                "Remove Member",
+                "Borrow Book",
+                "Return Book",
+                "Show Available Books",
+                "Show Borrowed Books",
+                "Show Members",
+                "Exit"
+            };
+
+            int selectedIndex = 0;
+            ConsoleKey keyPressed;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("===== Library Management System =====");
+                Console.WriteLine("Use ↑↓ arrow keys to navigate and Enter to select:\n");
+
+                for (int i = 0; i < menuOptions.Length; i++)
+                {
+                    if (i == selectedIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine($"> {menuOptions[i]} <");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"  {menuOptions[i]}");
+                    }
+                }
+
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                keyPressed = keyInfo.Key;
+
+                switch (keyPressed)
+                {
+                    case ConsoleKey.UpArrow:
+                        selectedIndex = (selectedIndex == 0) ? menuOptions.Length - 1 : selectedIndex - 1;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        selectedIndex = (selectedIndex == menuOptions.Length - 1) ? 0 : selectedIndex + 1;
+                        break;
+                }
+
+            } while (keyPressed != ConsoleKey.Enter);
+
+            Console.Clear();
+            return selectedIndex;
         }
     }
 }
